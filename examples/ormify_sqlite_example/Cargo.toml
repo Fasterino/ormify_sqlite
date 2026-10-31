@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-ormify = { version = "1.0.2", features = ["full", "bench"] }
+ormify = { version = "1.0.3", features = ["full", "bench"] }
 ormify_sqlite = { path = "../../", features = [
     "tokio_file_engine",
     "tokio_bundled",
