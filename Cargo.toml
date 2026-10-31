@@ -1,6 +1,6 @@
 [package]
 name = "ormify_sqlite"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 
 description = "Realization of SQLite for ormify ORM Framework for your SQLite database."

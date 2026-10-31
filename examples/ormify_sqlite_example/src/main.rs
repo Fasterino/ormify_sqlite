@@ -122,7 +122,7 @@ async fn main_inner() -> ormify::Result {
 }
 
 async fn test_run() -> ormify::Result<Benchmark> {
-    let args = "./db.sqlite3";
+    let args = ":memory:";
 
     let mut db = SQLiteOrmify::connect(args).await?;
 

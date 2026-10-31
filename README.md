@@ -31,18 +31,18 @@ Choose one driver/runtime combination:
 ```toml
 [dependencies]
 ormify = { version = "1.0.2", features = ["full"] }
-ormify_sqlite = { version = "1.0.0", features = ["tokio_file_engine"] }
+ormify_sqlite = { version = "1.0.1", features = ["tokio_file_engine"] }
 # Or use bundled version of SQLite:
-# ormify_sqlite = { version = "1.0.0", features = ["tokio_file_engine", "tokio_bundled"] }
+# ormify_sqlite = { version = "1.0.1", features = ["tokio_file_engine", "tokio_bundled"] }
 ```
 
 Or select async-std runtime if you don't like Tokio:
 
 ```toml
 ormify = { version = "1.0.2", features = ["full"] }
-ormify_sqlite = { version = "1.0.0", features = ["async_std_file_engine"] }
+ormify_sqlite = { version = "1.0.1", features = ["async_std_file_engine"] }
 # Or use bundled version of SQLite:
-# ormify_sqlite = { version = "1.0.0", features = ["async_std_file_engine", "async_std_bundled"] }
+# ormify_sqlite = { version = "1.0.1", features = ["async_std_file_engine", "async_std_bundled"] }
 ```
 
 ### Feature flags
@@ -75,7 +75,7 @@ struct User {
 #[tokio::main]
 async fn main() -> ormify::Result<()> {
     let mut db = Ormify::<SQLite, FileEngine>::connect("./path/to/database")
-    .await?;
+        .await?; // Note: you can pass ":memory:" if you need a temporary database.
 
     db.execute(vec![User::init()]).await?;
 
