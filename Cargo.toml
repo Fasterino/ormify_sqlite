@@ -1,0 +1,46 @@
+[package]
+name = "ormify_sqlite"
+version = "1.0.0"
+edition = "2024"
+
+description = "Realization of SQLite for ormify ORM Framework for your SQLite database."
+license = "MIT"
+
+repository = "https://github.com/Fasterino/ormify_sqlite"
+homepage = "https://github.com/Fasterino/ormify_sqlite"
+readme = "README.md"
+
+[features]
+default = []
+
+async_std_file_engine = ["_file_engine"]
+tokio_file_engine = ["tokio-rusqlite", "_file_engine"]         # todo: "tokio-stream", 
+async_std_bundled = ["rusqlite/bundled"]
+tokio_bundled = ["rusqlite/bundled", "tokio-rusqlite/bundled"]
+_file_engine = ["rusqlite"]
+
+[dependencies]
+ormify = { version = "1.0.2", features = ["orm_engine"] }
+serde = { version = "1.0.229", optional = true, features = ["derive"] }
+# todo:  tokio-stream = { version = "0.1.19", optional = true } 
+rusqlite = { version = "0.40.1", features = [
+    "column_decltype",
+    "chrono",
+    "uuid",
+], optional = true }
+tokio-rusqlite = { version = "0.8.0", features = [
+    "column_decltype",
+    "chrono",
+    "uuid",
+], optional = true }
+
+[dev-dependencies]
+ormify = { version = "1.0.2", features = ["orm_engine", "proc_macro"] }
+tokio = { version = "1.53.3", features = ["full"] }
+serde = { version = "1.0.229", features = ["derive"] }
+
+[workspace]
+members = [".", "examples/ormify_sqlite_example"]
+
+[package.metadata.docs.rs]
+all-features = true
